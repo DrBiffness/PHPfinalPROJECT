@@ -43,13 +43,13 @@
 	
 	<script>
   function openHome() {
-  var myWindow = window.open("/my-site/html_ideas_2/home.php", "_parent", "");
+  var myWindow = window.open("home.php", "_parent", "");
 }
 function openCustom() {
-  var myWindow = window.open("/my-site/html_ideas_2/custom_PC.php", "_parent", "");
+  var myWindow = window.open("custom_PC.php", "_parent", "");
 }
 function openSupport() {
-  var myWindow = window.open("/my-site/html_ideas_2/support.php", "_parent", "");
+  var myWindow = window.open("support.php", "_parent", "");
 }
 </script>
 	
