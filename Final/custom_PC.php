@@ -45,6 +45,33 @@
 		float: left;		
 		}
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 300px;
+}
+
+.wrapper {
+  border: 2px solid #f76707;
+  border-radius: 5px;
+  background-color: #fff4e6;
+}
+
+.wrapper > div {
+  border: 2px solid #ffa94d;
+  border-radius: 1px;
+  background-color: #ffd8a8;
+  padding: 1em;
+  color: #d9480f;
+  text-align: center;
+}
+
+.wrapper > div > img{
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+}
 </style>
 </head>
 <body>
@@ -89,6 +116,19 @@
 <button class="accordion">Case</button>
 <div class="panel">
   <p>This is information on all the different types of cases that are offered by J&M Electronics</p>
+  <div class="wrapper">
+  <div><img src="Img\CASE\NZXT\H400\white1.jpg" alt="NZXT H400" />
+    <br>
+    <h5>NZXT H400 (White)</h5>
+    <p>Price:&nbsp;&nbsp;&nbsp;$49.99</p>
+    <button type="submit" value="add to cart">Add to Cart</button>
+</div>
+  <div>Two</div>
+  <div>Three</div>
+  <div>Four</div>
+  <div>Five</div>
+</div>
+</div>
 </div>
 
 <button class="accordion">Processor</button>
