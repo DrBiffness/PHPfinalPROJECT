@@ -80,7 +80,11 @@
 	<p>
 		This is the home page!	
 	</p>
-	
+  
+  <?php
+    include("inc_data.php");
+    echo "Poop";
+  ?>
 	</div>
 
 </div>
