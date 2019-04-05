@@ -9,7 +9,7 @@
     $sataString = 'select * from sata';
     $gpuString = 'select * from gpu';
     $psuString = 'select * from psu';
-    $dbConnect = mysqli_connect('127.0.0.1','root','Greyfox38','MF_TECHNOLOGY');
+    $dbConnect = mysqli_connect('127.0.0.1','root','newpwd','MF_TECHNOLOGY');
 
     $caseResult = mysqli_query($dbConnect,$caseString);
     $cpuResult = mysqli_query($dbConnect,$cpuString);
