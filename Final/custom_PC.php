@@ -289,7 +289,7 @@
 
 <button class="accordion">Power Supply</button>
 <div class="panel">
-  <p>Gotta tha POWAAAAA!</p>
+  <p>Gotta have tha POWAAAAA!</p>
 
   <div class="wrapper">
   <?php
