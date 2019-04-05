@@ -15,7 +15,7 @@
   include("inc_header_custom_pc.php");
   include("inc_data.php");
 ?>
-
+<form action="support.php" method="get">
 <div class="wide">
 
 <div class="left">
@@ -49,7 +49,7 @@
 	
 	<h2 align="center">Begin your build from the list below</h2>
 	
-<button class="accordion">Case</button>
+<button type="button" class="accordion">Case</button>
 <div class="panel">
   <p>This is information on all the different types of cases that are offered by J&M Electronics</p>
   <div class="wrapper">
@@ -64,14 +64,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' name='test' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Processor</button>
+<button type="button" class="accordion">Processor</button>
 <div class="panel">
   <p>This is a list of information on all the "top of the line" processors that are offered by J&M Electronics</p>
   <p>AMD or Intel....pick your poison.</p>
@@ -86,14 +86,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["CPU"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Motherboard</button>
+<button type="button" class="accordion">Motherboard</button>
 <div class="panel">
   <p>This is information on all Motherboards that will fit with your prior selections.</p>
 
@@ -108,14 +108,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["MOBO"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Memory</button>
+<button type="button" class="accordion">Memory</button>
 <div class="panel">
   <p>Choose your memory.....don't skimp!</p>
   <div class="wrapper">
@@ -129,14 +129,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Processor Cooling</button>
+<button type="button" class="accordion">Processor Cooling</button>
 <div class="panel">
   <p>Don't be a fool...keep your s*** cool!</p>
 
@@ -151,14 +151,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' name='Test' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Storage</button>
+<button type="button" class="accordion">Storage</button>
 <div class="panel">
   <p>How many gigs of storage do you need?</p>
   <h4>M.2 Drives</h4>
@@ -174,7 +174,7 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -193,14 +193,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Video Card</button>
+<button type="button" class="accordion">Video Card</button>
 <div class="panel">
   <p>This is what sets apart the men from the boys</p>
 
@@ -215,14 +215,14 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
   </div>
 </div>
 
-<button class="accordion">Power Supply</button>
+<button type="button" class="accordion">Power Supply</button>
 <div class="panel">
   <p>Gotta have tha POWAAAAA!</p>
 
@@ -237,7 +237,7 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -251,6 +251,7 @@
 	?>
 	
 </div>
+	</form>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
