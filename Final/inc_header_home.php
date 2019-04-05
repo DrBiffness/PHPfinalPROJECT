@@ -32,14 +32,14 @@
 </div>
 
 <div id="Oslo" class="tabcontent">
-  <h1>Support</h1>
-  <h3>Questions ?!? chat with a Tech... </h3>
+  <h1>Shopping Cart</h1>
+  <h3>You don't have enough stuff in there yet!</h3>
 </div>
 
-<button class="tablink" id="defaultOpen" onclick="openCity('London', this, 'red')" >Home</button>
+<button class="tablink" id="defaultOpen" onClick="openCity('London', this, 'red')" >Home</button>
 <button class="tablink" onClick="openCustom()">Custom PC Builder</button>
 <button class="tablink" onClick="openParts()" >Parts</button>
-<button class="tablink" onClick="openSupport()">Support</button>
+<button class="tablink" onClick="openSupport()">Shopping Cart</button>
 	
 <script>
 function openCustom() {
