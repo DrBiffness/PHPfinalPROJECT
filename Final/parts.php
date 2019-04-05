@@ -1,52 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 20px;
-  transition: 0.4s;
-}
-
-.active, .accordion:hover {
-  background-color: #ccc; 
-}
-
-.panel {	
-  
-  padding: 0 18px;
-  display: none;
-  background-color: white;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
-.wide {
-		width: 100%;
-		margin: 0 auto;
-		}
-
-.left {
-		width: 20%;
-		float: left;		
-		}
-
-.center {
-		width: 60%;
-		float: left;		
-		}
-
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+	
 </head>
+	
+	
 <body>
 
 <?php
@@ -129,6 +91,11 @@
 
 </div>
 </div>
+	
+	<?php
+		include("inc_cart_right.php");
+	?>
+	
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
