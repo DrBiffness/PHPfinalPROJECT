@@ -183,6 +183,24 @@ body {
   border-radius: 3px;
 }
 
+.container b {
+	text-align: center;
+	font-size: 10;
+	flex: auto;
+}
+
+.container img {
+	max-height: 25px;
+	max-width:  25px;
+	
+}
+
+.container input {
+	max-height: 15px;
+	max-width: 15px;
+	font-size: 8;
+}
+
 input[type=text] {
   width: 90%;
   margin-bottom: 20px;
@@ -229,6 +247,18 @@ a {
 
 hr {
   border: 1px solid lightgrey;
+}
+
+.cartPic {
+	width: 10px;
+	height:10px;
+	
+}
+
+.cartName {
+	font-size: 8;
+	font-weight: bold;
+	
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
