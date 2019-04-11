@@ -30,7 +30,7 @@
 
   <div class="col-25">
 	  
-    <div class="container">
+    <div class="container1">
       <h4>Cart 
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
@@ -76,7 +76,7 @@
 	
 	<br/>
 	
-	<input type="submit" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
+	<input type="button" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
 	
   </div>
 
@@ -85,7 +85,7 @@
 	
 <script>
   function openCheckout() {
-  var myWindow = window.open("checkout.php", "_parent", "");
+  var myWindow = window.open("support.php", "_parent", "");
 }
 </script>
 	

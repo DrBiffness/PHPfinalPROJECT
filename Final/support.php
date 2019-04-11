@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+$cart = $_SESSION['cart'];
+var_dump($cart);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,10 +56,57 @@
 	<h2 align="center">Shopping Cart</h2>
 	<h3 align="center">	Review your order</h3>
 	
+	  <div class="container1">
+      <h4>Cart 
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i>
+          <b><?php echo $_SESSION['items'] ;?></b>
+        </span>
+      </h4>
+      <?php 
+		if (! empty($cart)){
+			$i = 0;
+			$price;
+			$total = 0.00;
+			//$item = 0;
+			while (! $cart[$i] === FALSE) {
+		echo "<p><img src='$cart[$i]' alt='pic' /></p>";
+				$i++;
+		echo "<p><b>$cart[$i]</b>";
+				$i++;
+				$i++;
+		echo "<input type='text' value='$cart[$i]' />";
+		$i--;
+				$price[] = ($cart[$i] *= $cart[$i+1]);
+		echo "<span class='price'>$".end($price)."</span></p>";
+				$i++;$i++;
+				
+ 		}}
+		else {
+			echo "<h4>Your cart is empty!</h4>";
+			$total = 0.00;
+		};
+		foreach ($price as $p) {
+			$total += $p;
+		}
+		$_SESSION['total'] = number_format($total,2);
+		?>
+      
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>$<?php echo $_SESSION['total'] ?></b></span></p>
+    
+	  
+		  <p><button class="btnAdd" name="clear" value="clear">Clear Cart</button></p>
+		  
+	  </div>
+	<br/>
+	
+	<input type="submit" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
+	
 </div>
 
 	<?php
-		include("inc_cart_right.php");
+		//include("inc_cart_right.php");
 	?>
 
 </div>
