@@ -1,3 +1,64 @@
+<?php
+session_start();
+extract($_REQUEST);
+$qty1 = array_diff($qty,[1]);
+$qty2 = array_values($qty1);
+//var_dump($qty2);
+if (isset($clear) and ($clear == 'clear')) {
+	$_SESSION['cart'] = array();
+	$_SESSION['items'] = 0;
+	$_SESSION['total'] = 0.00;
+}
+
+
+if  ((isset($_SESSION['hit'])) and ($_SESSION['hit'] > 0)) {
+$_SESSION['hit']++;
+//echo $selCase;
+//echo $_SESSION['hit'];
+
+	if (! empty($cart)) {
+		$selCase = explode(';',$cart);
+		if (!empty($qty1)){
+		$selCase = array_merge($selCase,$qty1);
+		$_SESSION['items'] += $qty2[0];
+		}
+		else{
+			$selCase[] = 1;
+			$_SESSION['items']++;
+		}
+	}
+	if ( (empty($_SESSION['cart'])) and ($_SESSION['hit'] > 1)){
+		$_SESSION['cart'] = $selCase;
+		$selCase = array();
+		//var_dump($_SESSION['cart']);
+	}
+	else {
+		if (! empty($selCase)){
+			$_SESSION['cart'] = array_merge($_SESSION['cart'],$selCase);
+			$selCase = array();
+			if (! empty($qty1)){
+				//$_SESSION['cart'] = array_merge($_SESSION['cart'],$qty1);
+			}
+			else{
+				//$_SESSION['cart'][] = 1;
+			}
+			//var_dump($_SESSION['cart']);
+		}
+		else {
+			//session_destroy();
+		}
+	}
+}
+else {
+	$_SESSION['cart'] = array();
+	$_SESSION['hit']++;
+};
+//session_destroy();
+//var_dump($_SESSION['cart']);
+$qty = array(1,2,3,4,5,6,7,8,9,10);
+?>
+<script type="text/javascript" src="jquery.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +74,9 @@
 
 <?php
 	include("inc_header_parts.php");
-	include("inc_data.php");
+	include_once("inc_data.php");
 ?>
-<form action="support.php" method="Get">
+<form action="parts.php" method="get">
 <div class="wide">
 
 <div class="left">
@@ -59,13 +120,24 @@
     while ($row = mysqli_fetch_assoc($caseResult)){
       //printf(stripslashes($row["NAME"]));
       //echo "<br>";
+		//$a = 0;
+		//$name["$a"] = $row["NAME"];
+		//$pic1["$a"] = $row["PIC1"];
+		//$price["$a"] = $row["PRICE"];
+		
       
-      echo "<div><img src='" . $row["PIC1"] . "' alt='" . $row["NAME"]
+      echo "<div><img src='" .  $row["PIC1"] . "' alt='" . $row["NAME"]
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='submit' value='add to cart'>Add to Cart</button>"; 
+	  echo "<select name='qty[]'>";
+	  foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+      echo "<button class='btnAdd' type='submit' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
+		//$i++;
     } 
   ?>
   </div>
@@ -75,7 +147,7 @@
 <div class="panel">
   <p>This is a list of information on all the "top of the line" processors that are offered by J&M Electronics</p>
   <p>AMD or Intel....pick your poison.</p>
-    <div class="wrapper">
+	<div class="wrapper">	
   <?php
     
     while ($row = mysqli_fetch_assoc($cpuResult)){
@@ -86,7 +158,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["CPU"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+    echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";  
+	echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["CPU"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -108,7 +185,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["MOBO"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["MOBO"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -129,7 +211,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -151,7 +238,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -174,7 +266,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -193,7 +290,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -202,7 +304,7 @@
 
 <button type="button" class="accordion">Video Card</button>
 <div class="panel">
-  <p>This is what sets apart the men from the boys</p>
+  <p>This is what sets apart the men from tfhe boys</p>
 
   <div class="wrapper">
   <?php
@@ -215,7 +317,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -237,7 +344,12 @@
       . " Pic'" . " /><br>";
       echo "<h5>" . $row["NAME"] . "</h5>";
       echo "<p>Price:&nbsp;&nbsp;&nbsp;$" . $row["PRICE"] . "</p>";
-      echo "<button class='btnAdd' type='button' value='add to cart'>Add to Cart</button>"; 
+      echo "<select name='qty[]'>";
+		foreach ($qty as $q) {
+		  echo "<option value='$q'>$q</option>";
+	  }
+	  echo "</select>";
+		echo "<button class='btnAdd' name='cart' value=" . '"' . $row["PIC1"] . ";" . $row["NAME"] . ";" .$row["PRICE"] . '"'  . ">Add to Cart</button>"; 
       echo "</div>"; 
     } 
   ?>
@@ -250,7 +362,7 @@
 		include("inc_cart_right.php");
 	?>
 	
-	</form>
+</form>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -267,6 +379,58 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 </script>
+	
+<script>
+	/*$(document).ready(function(){
+        $(function(){
+        $('parts.php').submit(function(e){
+            alert('Success');    
+			e.preventDefault();
+                var form = $(this);
+                var post_url = form.attr('action');
+                var post_data = form.serialize();
+                //$('#loadright', form).html('<img src="../../images/ajax-loader.gif" />       Please wait...');
+                $.ajax({
+                    type: 'POST',
+                    url: post_url, 
+                    data: post_data,
+                    success: function(msg) {
+                        $(form).fadeOut(800, function(){
+                            
+							form.html(msg).fadeIn().delay(2000);
+
+                        });
+                    }
+                });
+            });
+        });
+         });
+	*/
+	/*$(document).ready( function() {
+		$(.btnAdd).click(function()){
+						var page = $(this).attr
+						 }
+	})*/
+	</script>
+	
+	<script>
+
+/*function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("loadright").innerHTML =
+      this.responseText;
+		
+    }
+  };
+  xhttp.open("POST", "inc_cart_right.php", true);
+  xhttp.send();
+return false;
+};
+</script>
+	
+
 
 
 </body>
