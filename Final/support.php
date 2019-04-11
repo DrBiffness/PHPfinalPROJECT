@@ -1,8 +1,15 @@
 <?php
 session_start();
+extract($_REQUEST);
 
-$cart = $_SESSION['cart'];
-var_dump($cart);
+//var_dump($cart);
+//echo $clear;
+if (isset($clear) and ($clear == 'clear')) {
+	$_SESSION['cart'] = array();
+	$_SESSION['items'] = 0;
+	$_SESSION['total'] = 0.00;
+}
+$cart = @($_SESSION['cart']);
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +28,7 @@ var_dump($cart);
 <?php
 	include("inc_header_support.php");
 ?>
-
+<form action="support.php" method="get">
 <div class="wide">
 
 <div class="left">
@@ -72,12 +79,13 @@ var_dump($cart);
 			while (! $cart[$i] === FALSE) {
 		echo "<p><img src='$cart[$i]' alt='pic' /></p>";
 				$i++;
+				//$_SESSION['order']
 		echo "<p><b>$cart[$i]</b>";
 				$i++;
 				$i++;
 		echo "<input type='text' value='$cart[$i]' />";
 		$i--;
-				$price[] = ($cart[$i] *= $cart[$i+1]);
+				$price[] = @($cart[$i] *= $cart[$i+1]);
 		echo "<span class='price'>$".end($price)."</span></p>";
 				$i++;$i++;
 				
@@ -100,9 +108,14 @@ var_dump($cart);
 		  
 	  </div>
 	<br/>
-	
-	<input type="submit" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
-	
+	<?php
+	if (! empty($cart)) {
+	?>
+	<input type="button" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
+	<?php
+	};
+	?>
+	</form>
 </div>
 
 	<?php

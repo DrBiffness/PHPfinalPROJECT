@@ -1,5 +1,5 @@
 <?php
-
+//echo $_SERVER['PHP_SELF'];
 
 ?>
 
@@ -49,7 +49,7 @@
 		echo "<p><b>$disCart[$i]</b>";
 				$i++;
 				$i++;
-		echo "<input type='text' value='$disCart[$i]' />";
+		echo "<input type='text' id='quantity' name='quantity' value='$disCart[$i]' />";
 		$i--;
 				$price[] = ($disCart[$i] *= $disCart[$i+1]);
 		echo "<span class='price'>$".end($price)."</span></p>";
@@ -70,6 +70,10 @@
       <p>Total <span class="price" style="color:black"><b>$<?php echo $_SESSION['total'] ?></b></span></p>
     
 	  <?php
+			if ($_SERVER['PHP_SELF'] == '/final/checkout.php'){
+			
+		}
+	  else {
 		echo "<p><button class='btnAdd' name='clear' value='clear'>Clear Cart</button></p>";
 		?>
 	  </div>
@@ -77,7 +81,9 @@
 	<br/>
 	
 	<input type="button" value="Proceed to Checkout" class="btn" onClick="openCheckout()">
-	
+	<?php
+	 };
+	  ?>
   </div>
 
 
