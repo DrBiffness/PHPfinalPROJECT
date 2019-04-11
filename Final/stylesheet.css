@@ -171,7 +171,26 @@ span.error {
 	
 }
 
-.container input {
+.container1 {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+.container1 b {
+	text-align: center;
+	font-size: 10;
+	flex: auto;
+}
+
+.container1 img {
+	max-height: 25px;
+	max-width:  25px;
+	
+}
+
+.container1 input {
 	max-height: 15px;
 	max-width: 15px;
 	font-size: 8;
@@ -206,6 +225,19 @@ label {
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+}
+
+.btn1 {
+	background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+	
 }
 
 .btn:hover {
