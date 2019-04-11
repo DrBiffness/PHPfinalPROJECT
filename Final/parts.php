@@ -1,8 +1,9 @@
 <?php
 session_start();
+
 extract($_REQUEST);
-$qty1 = array_diff($qty,[1]);
-$qty2 = array_values($qty1);
+$qty1 = @(array_diff($qty,[1]));
+$qty2 = @(array_values($qty1));
 //var_dump($qty2);
 if (isset($clear) and ($clear == 'clear')) {
 	$_SESSION['cart'] = array();
@@ -18,6 +19,7 @@ $_SESSION['hit']++;
 
 	if (! empty($cart)) {
 		$selCase = explode(';',$cart);
+		
 		if (!empty($qty1)){
 		$selCase = array_merge($selCase,$qty1);
 		$_SESSION['items'] += $qty2[0];
@@ -53,6 +55,11 @@ else {
 	$_SESSION['cart'] = array();
 	$_SESSION['hit']++;
 };
+$testCart = array_chunk($_SESSION['cart'],4);
+//var_dump($testCart);
+$testCart1 = array_unique($testCart);
+$testCart2 = array_count_values($testCart);
+var_dump($testCart2);
 //session_destroy();
 //var_dump($_SESSION['cart']);
 $qty = array(1,2,3,4,5,6,7,8,9,10);

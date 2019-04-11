@@ -191,9 +191,8 @@ span.error {
 }
 
 .container1 input {
-	max-height: 15px;
-	max-width: 15px;
-	font-size: 8;
+	max-height: 30px;
+	max-width: 40px;
 }
 
 input[type=text] {
