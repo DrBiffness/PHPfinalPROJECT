@@ -21,7 +21,7 @@
     $gpuResult = mysqli_query($dbConnect,$gpuString);
     $psuResult = mysqli_query($dbConnect,$psuString);
 
-
+	
     /*while ($row = mysqli_fetch_assoc($caseResult)){
         printf(stripslashes($row["NAME"]));
         echo "<br>";
