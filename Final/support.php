@@ -5,11 +5,12 @@ extract($_REQUEST);
 //var_dump($cart);
 //echo $clear;
 if (isset($clear) and ($clear == 'clear')) {
+	$_SESSION['newCart'] = array();
 	$_SESSION['cart'] = array();
 	$_SESSION['items'] = 0;
 	$_SESSION['total'] = 0.00;
 }
-$cart = @($_SESSION['cart']);
+$cart = @($_SESSION['newCart']);
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +87,7 @@ $cart = @($_SESSION['cart']);
 		echo "<input type='text' value='$cart[$i]' />";
 		$i--;
 				$price[] = @($cart[$i] *= $cart[$i+1]);
-		echo "<span class='price'>$".end($price)."</span></p>";
+		echo "<span class='price'>$".number_format((end($price)),2)."</span></p>";
 				$i++;$i++;
 				
  		}}
@@ -97,11 +98,13 @@ $cart = @($_SESSION['cart']);
 		foreach ($price as $p) {
 			$total += $p;
 		}
-		$_SESSION['total'] = number_format($total,2);
+		//$_SESSION['total'] = number_format($total,2);
 		?>
       
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$<?php echo $_SESSION['total'] ?></b></span></p>
+		<p>Subtotal <span class="price" style="color:black"><b>$<?php echo $_SESSION['total'] ?></b></span></p>
+		  <p>Sales Tax <span class="price" style="color: black"><b>$<?php echo number_format(($_SESSION['total'] * .06),2) ?></b></span></p><hr>
+      <p><b>Total</b> <span class="price" style="color:black"><b>$<?php echo number_format(($_SESSION['total'] * 1.06),2) ?></b></span></p>
     
 	  
 		  <p><button class="btnAdd" name="clear" value="clear">Clear Cart</button></p>

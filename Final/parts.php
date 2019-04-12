@@ -7,6 +7,7 @@ $qty2 = @(array_values($qty1));
 //var_dump($qty2);
 if (isset($clear) and ($clear == 'clear')) {
 	$_SESSION['cart'] = array();
+	$_SESSION['newCart'] = array();
 	$_SESSION['items'] = 0;
 	$_SESSION['total'] = 0.00;
 }
@@ -58,8 +59,65 @@ else {
 $testCart = array_chunk($_SESSION['cart'],4);
 //var_dump($testCart);
 $testCart1 = array_unique($testCart);
-$testCart2 = array_count_values($testCart);
-var_dump($testCart2);
+$test = array_count_values($testCart);
+$testCart2 = array_slice($testCart,0,1);
+$testCart3 = array_slice($testCart,1,1);
+$testCart4 = array_slice($testCart,2,1);
+//var_dump($testCart2);
+//var_dump($testCart3);
+//var_dump($testCart4);
+//echo count($compare);
+$compare = array_intersect($testCart2,$testCart3,$testCart4);
+//var_dump($compare);
+$newCart = array();
+$newCart1 = array();
+$_SESSION['testQuant'] = 0;
+if (! empty($testCart)){
+
+foreach ($testCart as $k => $t) {
+	$counter++;
+	
+	//echo "WTF";
+	//var_dump($t);
+	if ($counter > 1){
+		//$result = array_diff($t,$testCart[$t-1]);
+		//echo $result;
+		$mode1 = current($t);
+		$mode2 = prev($t);
+		//print ($mode1);
+		//print ($mode2);
+		if ($t[1] == $testCart[$k-1][1]) {
+			//echo "poop";
+			//print_r($testCart[$t-1]);
+			
+			 $quant = $testCart[$k-1][3] + $t[3];
+			if ($_SESSION['testQuant'] == 0){
+			$_SESSION['testQuant'] += $quant;
+			}
+			else {
+				$_SESSION['testQuant'] += $t[3];
+			}
+			//var_dump($quant);
+			array_splice($t,3,1,$_SESSION['testQuant']);
+			//var_dump($t);
+			array_splice($newCart,-4,4,$t);
+		//echo "Test1";
+		}
+		else {
+			$newCart = array_merge($newCart,$t);
+		//echo "Test2";
+		}
+	}
+	else {
+		$newCart = $t;
+	//echo "Test3";
+	}
+	//$counter++;
+	//echo $counter;
+}
+}
+$_SESSION['newCart'] = $newCart;
+//var_dump($newCart);
 //session_destroy();
 //var_dump($_SESSION['cart']);
 $qty = array(1,2,3,4,5,6,7,8,9,10);

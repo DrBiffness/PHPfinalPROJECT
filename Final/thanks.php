@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+$dbConnect = mysqli_connect('127.0.0.1','root','newpwd','MF_TECHNOLOGY');
+$orderString = 'select PAYID from payment WHERE UPPER(FULLNAME) LIKE UPPER(\''.$_SESSION['fname'].'\')';
+$orderResult = mysqli_query($dbConnect,$orderString);
+$payid = mysqli_fetch_assoc($orderResult);
+//print_r($_SESSION['fname']);
+//print_r($orderResult);
+//echo $payid["PAYID"];
+$orderString2 = 'INSERT INTO ORDERS(PAYID,TOTAL) VALUES('.$payid["PAYID"].','.($_SESSION['total'] * 1.06).')';
+$orderResult2 = mysqli_query($dbConnect,$orderString2);
+if (! empty($orderResult2)) {
+	//echo "Hooray";
+	session_destroy();
+}
+//echo "poop";  
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +76,7 @@
 											Name:
 										</td>										
 										<td>
-											&nbsp&nbsp$fname
+											&nbsp&nbsp".$_SESSION['fname']."
 										</td>
 									</tr>
 									
@@ -66,10 +84,19 @@
 										<td>
 											Card Number:
 										</td>
-										<td>				&nbsp&nbsp" .str_pad(substr(substr($ccnum,-16),-4),16,'*',STR_PAD_LEFT). "
+										<td>				&nbsp&nbsp".str_pad(substr(substr($_SESSION['ccnum'],-16),-4),16,'*',STR_PAD_LEFT). "
 										</td>
 									</tr>
 									
+									<tr>
+										<td>
+											Total:
+										</td>										
+										<td>
+											&nbsp&nbsp$".number_format(($_SESSION['total'] * 1.06),2)."
+										</td>
+									</tr>
+
 									
 							</table>";						
 					
