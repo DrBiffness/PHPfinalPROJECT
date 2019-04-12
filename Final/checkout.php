@@ -2,7 +2,7 @@
 <?php
 session_start();
 include ("inc_data.php");
-$disCart = $_SESSION['cart'];
+$disCart = $_SESSION['newCart'];
 if (isset($_POST['submit']))
 {
 		
@@ -153,6 +153,7 @@ if (isset($_POST['submit']))
 	
 	$error = $fnameErr . $emailErr . $addressErr . $cityErr . $stateErr . $zipErr . $cnameErr . $ccnumErr . $expmonthErr . $expyearErr . $cvvErr;
 		
+	
 	if (strlen ($error) == 0)
 	{	
 		$paystring = "INSERT INTO PAYMENT (fullname, email, address, city, state, zip, cname, ccnum, expmonth, expyear, cvv)
@@ -167,12 +168,23 @@ echo "Connected successfully";
 
 	if ($dbConnect->query($paystring) === TRUE) {
 echo "New record created successfully";
+		$_SESSION['fname'] = $fname;
+		$_SESSION['email'] = $email;
+		$_SESSION['address'] = $address;
+		$_SESSION['city'] = $city;
+		$_SESSION['state'] = $state;
+		$_SESSION['zip'] = $zip;
+		$_SESSION['cname'] = $cname;
+		$_SESSION['ccnum'] = $ccnum;
+		$_SESSION['expmonth'] = $expmonth;
+		$_SESSION['expyear'] = $expyear;
+		$_SESSION['cvv'] = $cvv;
 } else {
 echo "Error: " . $paystring . "<br>" . $dbConnect->error;
 }$dbConnect->close();
-
+	if (! empty($_SESSION['fname'])){
 	header("Location: thanks.php");
-		
+		}
 	}
 	else{
 		

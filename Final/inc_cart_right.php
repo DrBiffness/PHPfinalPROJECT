@@ -17,7 +17,7 @@
 <?php
 //extract($_REQUEST);
 //$_SESSION['case'] = $case;
-	$disCart = $_SESSION['cart'];
+	$disCart = $_SESSION['newCart'];
 	//$disCart1 = array_chunk($disCart,4);
 	//var_dump($disCart1);
 	//$_SESSION['items'] = sizeof($disCart) / 3;
@@ -52,7 +52,7 @@
 		echo "<input type='text' id='quantity' name='quantity' value='$disCart[$i]' />";
 		$i--;
 				$price[] = ($disCart[$i] *= $disCart[$i+1]);
-		echo "<span class='price'>$".end($price)."</span></p>";
+		echo "<span class='price'>$".number_format((end($price)),2)."</span></p>";
 				$i++;$i++;
 				
  		}}
